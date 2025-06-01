@@ -1,0 +1,23 @@
+.footer_container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+}
+
+.footer_content {
+  grid-column: 2 / 6;
+
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .footer_container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer_content {
+    grid-column: 1 / -1;
+  }
+}
