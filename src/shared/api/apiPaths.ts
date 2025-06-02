@@ -8,4 +8,12 @@ export class ApiPaths {
     static refreshToken(){
         return "/auth/refresh"
     }
+
+    static getMe() {
+        return "/auth/me"
+    }
+
+    static getProducts(limit:number, skip: number) {
+        return `/products?limit=${limit}&skip=${skip}&select=title,price,category,thumbnail`
+    }
 }

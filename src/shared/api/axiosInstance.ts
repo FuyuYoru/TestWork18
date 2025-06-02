@@ -4,11 +4,11 @@ import { ApiPaths, baseURL } from "./apiPaths";
 
 const api = axios.create({
   baseURL: baseURL,
-  withCredentials: true,
+  withCredentials: false, //true
 });
 
 let isRefreshing = false;
-let failedQueue: any[] = [];
+let failedQueue: Array<{ resolve: (value?: any) => void; reject: (error: any) => void }> = [];
 
 const processQueue = (error: any, token: string | null = null) => {
   failedQueue.forEach(prom => {
@@ -34,10 +34,8 @@ api.interceptors.response.use(
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({
-            resolve: () => {
-              resolve(api(originalRequest));
-            },
-            reject: (err: any) => reject(err),
+            resolve: () => resolve(api(originalRequest)),
+            reject,
           });
         });
       }
@@ -49,6 +47,8 @@ api.interceptors.response.use(
 
         const newAccessToken = refreshResponse.data.accessToken;
 
+        localStorage.setItem('accessToken', newAccessToken);
+
         processQueue(null, newAccessToken);
         isRefreshing = false;
 
@@ -57,7 +57,10 @@ api.interceptors.response.use(
         processQueue(refreshError, null);
         isRefreshing = false;
 
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
         logout();
+
         return Promise.reject(refreshError);
       }
     }
@@ -65,5 +68,13 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('accessToken');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
 export default api;

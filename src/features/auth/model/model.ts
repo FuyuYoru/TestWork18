@@ -1,6 +1,9 @@
+import { IUser } from "@/entities/user/model/model";
+
 export interface AuthState {
-  user: { id: string; email: string } | null;
+  user: IUser | null;
   isAuthenticated: boolean;
-  login: (user: any) => void;
+  login: (user: IUser) => void;
   logout: () => void;
+  initAuth: () => Promise<void>
 }

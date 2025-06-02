@@ -1,0 +1,19 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 100%;
+    overflow-y: scroll;
+    // padding: 1rem;
+}
+
+
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    // overflow-y: scroll;
+    // overflow-x: hidden;
+}
