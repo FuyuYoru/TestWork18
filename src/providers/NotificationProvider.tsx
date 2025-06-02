@@ -25,7 +25,7 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
 
     setTimeout(() => {
       setNotifications((prev) => prev.filter((n) => n.id !== id));
-    }, 2000);
+    }, 3500);
   };
 
   return (
@@ -42,7 +42,7 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
       }}>
         {notifications.map((n) => (
           <div key={n.id} style={{
-            backgroundColor: '#333',
+            backgroundColor: '#ce0000',
             color: '#fff',
             padding: '10px 20px',
             borderRadius: '8px',

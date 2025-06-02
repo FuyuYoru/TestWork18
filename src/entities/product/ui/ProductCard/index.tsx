@@ -4,7 +4,6 @@ import { useAuthStore } from '@/features/auth/model/authStore';
 import { useState } from 'react';
 import { IProduct } from '@/entities/product/model/model';
 import styles from './index.module.scss'
-import { Price } from '@/entities/product/ui/Price';
 
 export const ProductCard: React.FC<{ product: IProduct }> = ({ product }) => {
     const { isAuthenticated } = useAuthStore();
@@ -32,11 +31,11 @@ export const ProductCard: React.FC<{ product: IProduct }> = ({ product }) => {
             >
                 ${product.price}
             </span>
-            {/* {isAuthenticated && hovered && (
-                <button className="">
+            {isAuthenticated && hovered && (
+                <button className={styles.addToCart}>
                     Add to cart
                 </button>
-            )} */}
+            )}
         </div>
     );
 };

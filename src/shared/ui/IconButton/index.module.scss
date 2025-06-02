@@ -1,0 +1,44 @@
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.dark {
+  background-color: #1e1f29;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #000;
+  }
+}
+
+.transparent {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+
+  &:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+  }
+}

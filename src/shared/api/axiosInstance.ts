@@ -23,7 +23,6 @@ api.interceptors.response.use(
   async error => {
     const originalRequest = error.config;
     const logout = useAuthStore.getState().logout;
-
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
@@ -43,7 +42,17 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refreshResponse = await api.post(ApiPaths.refreshToken());
+        const refreshToken = localStorage.getItem('refreshToken');
+
+        const refreshResponse = await api.post(
+          ApiPaths.refreshToken(),
+          {
+            refreshToken,
+          },
+          {
+            headers: { 'Content-Type': 'application/json' },
+          }
+        );
 
         const newAccessToken = refreshResponse.data.accessToken;
 

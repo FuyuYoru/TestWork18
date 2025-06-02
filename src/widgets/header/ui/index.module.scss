@@ -1,9 +1,7 @@
 .header {
   display: flex;
   flex-direction: column;
-
   color: #ffffff;
-
   border-bottom: 3px solid #d40024;
 }
 
@@ -18,14 +16,9 @@
   grid-column: 2 / 6;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  // padding: 1rem;
-  // background-color: #f5f5f5;
-  // border-radius: 8px;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  // flex-direction: column;
 }
 
 .header-info_content-left {
@@ -38,6 +31,11 @@
   display: flex;
   flex-direction: row-reverse;
   gap: 0.5rem;
+
+  span {
+    text-align: center;
+    align-content: center;
+  }
 }
 
 .header-banner_container {
@@ -51,13 +49,11 @@
 
 .header-banner_content {
   grid-column: 2 / 6;
-  min-height: 80px;
-
+  // min-height: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
-  // background-color: white;
   span {
     width: 50%;
     font-size: 3rem;
@@ -66,12 +62,35 @@
   }
 }
 
-// @media (max-width: 768px) {
-//   .header_container {
-//     grid-template-columns: 1fr;
-//   }
+// Адаптив под ≤ 700px
+@media (max-width: 700px) {
+  .header-info_container,
+  .header-banner_container {
+    display: block;
+  }
 
-//   .header_content {
-//     grid-column: 1 / -1;
-//   }
-// }
+  .header-info_content,
+  .header-banner_content {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .header-info_content-left{
+    display: none;
+  }
+  // .header-info_content-right {
+  //   flex-direction: column;
+  //   align-items: center;
+  //   gap: 0.25rem;
+  // }
+
+  .header-banner_content span {
+    width: 100%;
+    font-size: 2rem;
+  }
+}

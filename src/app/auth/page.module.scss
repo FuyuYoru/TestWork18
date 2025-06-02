@@ -1,0 +1,28 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+    max-height: 100%;
+    align-items: center;
+    gap: 0.5rem;
+    // padding: 1rem;
+    h3 {
+        color: #282940;
+        font-size: 2rem;
+    }
+
+    .page_form {
+    width: 500px;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+    .page_form > button {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 5px;
+    }
+}
